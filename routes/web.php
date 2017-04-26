@@ -11,12 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return resource_path('views');
-    return view('welcome');
 
-});
+
+
+Route::get('/', 'PagesController@index');
+
+Route::get('profile', 'PagesController@profile');
+
 Route::get('users', ['uses' => 'UsersController@index']);
+Route::get('users/create', ['uses' => 'UsersController@create']);
+Route::post('users', ['uses' => 'UsersController@store']);
+
+
+
 
 // Route::get('users', function(){
 //       $users = [
@@ -33,3 +40,7 @@ Route::get('users', ['uses' => 'UsersController@index']);
 //       ];
 //     return $users;
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
